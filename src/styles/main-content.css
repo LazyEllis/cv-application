@@ -1,0 +1,8 @@
+main {
+  padding: 20px;
+  display: flex;
+}
+
+main > div {
+  flex: 1;
+}
