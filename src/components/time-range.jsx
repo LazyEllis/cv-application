@@ -1,5 +1,6 @@
 import Select from "./select";
-import { selects } from "../data";
+import { selects } from "../helpers/data";
+import { toHyphenCase } from "../helpers/utils";
 
 const TimeRange = (props) => {
   const phrase = [props.section, props.boundary];
@@ -11,7 +12,7 @@ const TimeRange = (props) => {
         <Select
           {...select}
           key={select.name}
-          id={[...phrase, select.name].join("-").toLowerCase()}
+          id={toHyphenCase(...phrase, select.name)}
           label={[...phrase, select.name].join(" ")}
         />
       ))}
