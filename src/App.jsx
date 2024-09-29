@@ -31,6 +31,10 @@ const App = () => {
     new Section("Experience", experience, setExperience),
   ];
 
+  const contactInfo = Object.keys(personalDetails)
+    .filter((key) => key !== "fullName" && personalDetails[key] !== "")
+    .map((key) => personalDetails[key]);
+
   return (
     <>
       <Header />
@@ -43,6 +47,20 @@ const App = () => {
               key={form.name}
             />
           ))}
+        </div>
+        <div>
+          <div className="cv-header">
+            {personalDetails.fullName && <h2>{personalDetails.fullName}</h2>}
+            {contactInfo.length > 0 && (
+              <div className="contact-info">
+                {contactInfo.map((info, index) => (
+                  <div key={info} className={index > 0 && "border-left"}>
+                    {info}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </MainContent>
     </>

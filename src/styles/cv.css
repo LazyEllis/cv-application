@@ -1,0 +1,19 @@
+.cv-header {
+  text-align: center;
+}
+
+.cv-header h2 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.cv-header .contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cv-header .contact-info > .border-left {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
