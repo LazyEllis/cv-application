@@ -1,4 +1,4 @@
-header {
+#root > header {
   background-color: #ed4162;
   padding: 20px;
 }

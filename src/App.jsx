@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Form from "./components/form";
 import MainContent from "./components/main-content";
+import CVSection from "./components/cv-section";
 import { forms } from "./helpers/data";
 import { Section } from "./helpers/utils";
 
@@ -35,11 +36,15 @@ const App = () => {
     .filter((key) => key !== "fullName" && personalDetails[key] !== "")
     .map((key) => personalDetails[key]);
 
+  const innerSections = sections.filter(
+    (section) => section.title !== "Personal Details"
+  );
+
   return (
     <>
       <Header />
       <MainContent>
-        <div>
+        <div className="forms">
           {forms.map((form) => (
             <Form
               {...form}
@@ -48,19 +53,28 @@ const App = () => {
             />
           ))}
         </div>
-        <div>
-          <div className="cv-header">
-            {personalDetails.fullName && <h2>{personalDetails.fullName}</h2>}
-            {contactInfo.length > 0 && (
-              <div className="contact-info">
-                {contactInfo.map((info, index) => (
-                  <div key={info} className={index > 0 && "border-left"}>
-                    {info}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+        <div className="cv">
+          {!Object.values(personalDetails).every((detail) => detail === "") && (
+            <header>
+              {personalDetails.fullName && <h2>{personalDetails.fullName}</h2>}
+              {contactInfo.length > 0 && (
+                <div className="contact-info">
+                  {contactInfo.map((info, index) => (
+                    <div key={info} className={index > 0 && "border-left"}>
+                      {info}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </header>
+          )}
+          {innerSections.map((innerSection) => (
+            <CVSection
+              key={innerSection.title}
+              title={innerSection.title}
+              details={innerSection.stateValues}
+            />
+          ))}
         </div>
       </MainContent>
     </>
