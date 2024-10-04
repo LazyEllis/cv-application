@@ -18,12 +18,20 @@ const App = () => {
     school: "",
     degree: "",
     location: "",
+    startMonth: "",
+    startYear: "",
+    endMonth: "",
+    endYear: "",
   });
 
   const [experience, setExperience] = useState({
     company: "",
     position: "",
     location: "",
+    startMonth: "",
+    startYear: "",
+    endMonth: "",
+    endYear: "",
   });
 
   const sections = [

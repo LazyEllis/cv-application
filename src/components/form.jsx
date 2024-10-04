@@ -20,7 +20,11 @@ const Form = (props) => (
       ))}
       {props.timeRange &&
         ["Start", "End"].map((boundary) => (
-          <TimeRange key={boundary} section={props.name} boundary={boundary} />
+          <TimeRange
+            key={boundary}
+            section={props.section}
+            boundary={boundary}
+          />
         ))}
     </form>
   </section>

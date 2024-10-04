@@ -18,7 +18,10 @@ const CVSection = (props) =>
                 ? props.details.degree
                 : props.details.position}
             </div>
-            <div></div>
+            <div>
+              {props.details.startMonth.slice(0, 3)} {props.details.startYear} -{" "}
+              {props.details.endMonth.slice(0, 3)} {props.details.endYear}
+            </div>
           </div>
         </div>
       </div>

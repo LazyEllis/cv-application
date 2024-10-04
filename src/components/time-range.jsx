@@ -1,9 +1,9 @@
 import Select from "./select";
 import { selects } from "../helpers/data";
-import { toHyphenCase } from "../helpers/utils";
+import { toCamelCase, toHyphenCase } from "../helpers/utils";
 
 const TimeRange = (props) => {
-  const phrase = [props.section, props.boundary];
+  const phrase = [props.section.name, props.boundary];
 
   return (
     <fieldset>
@@ -14,6 +14,15 @@ const TimeRange = (props) => {
           key={select.name}
           id={toHyphenCase(...phrase, select.name)}
           label={[...phrase, select.name].join(" ")}
+          value={
+            props.section.stateValues[toCamelCase(props.boundary + select.name)]
+          }
+          onChange={(e) =>
+            props.section.updateValues(
+              e,
+              toCamelCase(props.boundary + select.name)
+            )
+          }
         />
       ))}
     </fieldset>
