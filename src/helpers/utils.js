@@ -1,4 +1,4 @@
-export const toHyphenCase = (...str) => str.join("-").toLowerCase();
+export const toKebabCase = (...str) => str.join("-").toLowerCase();
 
 export const toCamelCase = (str) =>
   str
@@ -6,6 +6,9 @@ export const toCamelCase = (str) =>
       index === 0 ? word.toLowerCase() : word.toUpperCase()
     )
     .replace(/\s+/g, "");
+
+export const hasNonEmptyValues = (object) =>
+  !Object.values(object).every((element) => element === "");
 
 export class Section {
   constructor(title, stateValues, setState) {

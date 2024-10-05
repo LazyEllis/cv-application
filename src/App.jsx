@@ -1,10 +1,9 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import Form from "./components/form";
-import MainContent from "./components/main-content";
-import CVSection from "./components/cv-section";
+import Form from "./components/Form";
+import CVSection from "./components/CVSection";
 import { forms } from "./helpers/data";
-import { Section } from "./helpers/utils";
+import { Section, hasNonEmptyValues } from "./helpers/utils";
+import "./styles/app.css";
 
 const App = () => {
   const [personalDetails, setPersonalDetails] = useState({
@@ -50,8 +49,10 @@ const App = () => {
 
   return (
     <>
-      <Header />
-      <MainContent>
+      <header>
+        <h1>CV Generator</h1>
+      </header>
+      <main>
         <div className="forms">
           {forms.map((form) => (
             <Form
@@ -62,7 +63,7 @@ const App = () => {
           ))}
         </div>
         <div className="cv">
-          {!Object.values(personalDetails).every((detail) => detail === "") && (
+          {hasNonEmptyValues(personalDetails) && (
             <header>
               {personalDetails.fullName && <h2>{personalDetails.fullName}</h2>}
               {contactInfo.length > 0 && (
@@ -84,7 +85,7 @@ const App = () => {
             />
           ))}
         </div>
-      </MainContent>
+      </main>
     </>
   );
 };

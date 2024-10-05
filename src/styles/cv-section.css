@@ -1,0 +1,15 @@
+section h3 {
+  text-transform: uppercase;
+  border-bottom: 2px solid #000;
+}
+
+.cv-section-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cv-section-detail div {
+  display: flex;
+  justify-content: space-between;
+}
