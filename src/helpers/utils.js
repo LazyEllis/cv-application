@@ -10,13 +10,14 @@ export const toCamelCase = (str) =>
 export const hasNonEmptyValues = (object) =>
   !Object.values(object).every((element) => element === "");
 
-export class Section {
-  constructor(title, stateValues, setState) {
-    this.title = title;
+class Section {
+  constructor(stateValues, setState) {
     this.stateValues = stateValues;
     this.setState = setState;
   }
+}
 
+export class SingleSection extends Section {
   updateValues(event, field) {
     this.setState({
       ...this.stateValues,
@@ -28,5 +29,14 @@ export class Section {
     this.setState(
       Object.fromEntries(Object.keys(this.stateValues).map((key) => [key, ""]))
     );
+  }
+}
+
+export class MultiSection extends Section {
+  addSection(section) {
+    this.setState([
+      ...this.stateValues,
+      { id: crypto.randomUUID(), ...section },
+    ]);
   }
 }
