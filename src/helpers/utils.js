@@ -23,4 +23,10 @@ export class Section {
       [field]: event.target.value,
     });
   }
+
+  resetValues() {
+    this.setState(
+      Object.fromEntries(Object.keys(this.stateValues).map((key) => [key, ""]))
+    );
+  }
 }

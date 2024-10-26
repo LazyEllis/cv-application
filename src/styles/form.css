@@ -21,3 +21,13 @@ select {
   display: block;
   width: 100%;
 }
+
+.btn-group {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+}
+
+.btn-group button {
+  width: 100%;
+}

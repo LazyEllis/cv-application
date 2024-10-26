@@ -42,3 +42,14 @@ export const forms = [
     timeRange: true,
   },
 ];
+
+export const actionButtons = [
+  {
+    type: "reset",
+    text: "Cancel",
+  },
+  {
+    type: "submit",
+    text: "Save",
+  },
+];

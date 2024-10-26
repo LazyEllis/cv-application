@@ -54,13 +54,21 @@ const App = () => {
       </header>
       <main>
         <div className="forms">
-          {forms.map((form) => (
-            <Form
-              {...form}
-              section={sections.find((section) => section.title === form.name)}
-              key={form.name}
-            />
-          ))}
+          {forms.map((form) => {
+            const section = sections.find(
+              (section) => section.title === form.name
+            );
+
+            return (
+              <Form
+                {...form}
+                key={form.name}
+                section={section}
+                onSubmit={(e) => e.preventDefault()}
+                onReset={() => section.resetValues()}
+              />
+            );
+          })}
         </div>
         <div className="cv">
           {hasNonEmptyValues(personalDetails) && (
