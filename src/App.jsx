@@ -78,9 +78,9 @@ const App = () => {
     },
   ];
 
-  const contactInfo = Object.keys(personalDetails)
-    .filter((key) => key !== "fullName" && personalDetails[key] !== "")
-    .map((key) => personalDetails[key]);
+  const contactInfo = Object.entries(personalDetails).filter(
+    ([key, value]) => key !== "fullName" && value !== ""
+  );
 
   const innerSections = forms.filter(
     (form) => form.title !== "Personal Details"
@@ -119,14 +119,14 @@ const App = () => {
           {hasNonEmptyValues(personalDetails) && (
             <header>
               {personalDetails.fullName && <h2>{personalDetails.fullName}</h2>}
-              {contactInfo.length > 0 && (
+              {hasNonEmptyValues(Object.fromEntries(contactInfo)) && (
                 <div className="contact-info">
-                  {contactInfo.map((info, index) => (
+                  {contactInfo.map(([key, value], index) => (
                     <div
-                      key={info}
+                      key={key}
                       className={index > 0 ? "border-left" : undefined}
                     >
-                      {info}
+                      {value}
                     </div>
                   ))}
                 </div>
