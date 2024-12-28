@@ -38,11 +38,13 @@ const Form = ({ title, inputs, entry, savedEntries, timeRange }) => {
               boundary={boundary}
             />
           ))}
-        <div className="btn-group">
-          {actionButtons.map((button) => (
-            <ActionButton {...button} key={button.text} />
-          ))}
-        </div>
+        {savedEntries && (
+          <div className="btn-group">
+            {actionButtons.map((button) => (
+              <ActionButton {...button} key={button.text} />
+            ))}
+          </div>
+        )}
       </form>
     </section>
   );
