@@ -18,10 +18,10 @@ class Section {
 }
 
 export class SingleSection extends Section {
-  updateValues(event, field) {
+  updateValues(e) {
     this.setState({
       ...this.stateValues,
-      [field]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   }
 

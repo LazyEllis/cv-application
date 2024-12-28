@@ -44,8 +44,7 @@ const App = () => {
   const forms = [
     {
       title: "Personal Details",
-      currentSection: new SingleSection(personalDetails, setPersonalDetails),
-      savedSection: new SingleSection(personalDetails, setPersonalDetails),
+      entry: new SingleSection(personalDetails, setPersonalDetails),
       inputs: [
         { label: "Full Name", type: "text" },
         { label: "Phone Number", type: "tel" },
@@ -56,8 +55,8 @@ const App = () => {
     },
     {
       title: "Education",
-      currentSection: new SingleSection(education, setEducation),
-      savedSection: new MultiSection(educationList, setEducationList),
+      entry: new SingleSection(education, setEducation),
+      savedEntries: new MultiSection(educationList, setEducationList),
       inputs: [
         { label: "School", type: "text" },
         { label: "Degree", type: "text" },
@@ -67,8 +66,8 @@ const App = () => {
     },
     {
       title: "Experience",
-      currentSection: new SingleSection(experience, setExperience),
-      savedSection: new MultiSection(experienceList, setExperienceList),
+      entry: new SingleSection(experience, setExperience),
+      savedEntries: new MultiSection(experienceList, setExperienceList),
       inputs: [
         { label: "Position", type: "text" },
         { label: "Company", type: "text" },
@@ -82,9 +81,7 @@ const App = () => {
     ([key, value]) => key !== "fullName" && value !== ""
   );
 
-  const innerSections = forms.filter(
-    (form) => form.title !== "Personal Details"
-  );
+  const innerSections = forms.filter((form) => form.savedEntries);
 
   return (
     <>
@@ -93,27 +90,9 @@ const App = () => {
       </header>
       <main>
         <div className="forms">
-          {forms.map((form) => {
-            const handleSubmit = (e) => {
-              e.preventDefault();
-              if (form.savedSection instanceof MultiSection) {
-                form.savedSection.addSection(form.currentSection.stateValues);
-                e.target.reset();
-              }
-            };
-
-            const handleReset = () => form.currentSection.resetValues();
-
-            return (
-              <Form
-                {...form}
-                key={form.title}
-                section={form.currentSection}
-                onSubmit={handleSubmit}
-                onReset={handleReset}
-              />
-            );
-          })}
+          {forms.map((form) => (
+            <Form {...form} key={form.title} />
+          ))}
         </div>
         <div className="cv">
           {hasNonEmptyValues(personalDetails) && (
@@ -137,8 +116,8 @@ const App = () => {
             <CVSection
               key={innerSection.title}
               title={innerSection.title}
-              savedEntries={innerSection.savedSection.stateValues}
-              currentEntry={innerSection.currentSection.stateValues}
+              savedEntries={innerSection.savedEntries.stateValues}
+              entry={innerSection.entry.stateValues}
             />
           ))}
         </div>

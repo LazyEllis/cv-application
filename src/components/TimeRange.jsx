@@ -1,9 +1,9 @@
 import Select from "./Select";
 import { selects } from "../helpers/data";
-import { toCamelCase, toKebabCase } from "../helpers/utils";
+import { toKebabCase } from "../helpers/utils";
 
-const TimeRange = ({ section, boundary }) => {
-  const phrase = [section.title, boundary];
+const TimeRange = ({ title, entry, boundary }) => {
+  const phrase = [title, boundary];
 
   return (
     <fieldset>
@@ -11,13 +11,12 @@ const TimeRange = ({ section, boundary }) => {
       {selects.map((select) => (
         <Select
           {...select}
-          key={select.name}
-          id={toKebabCase(...phrase, select.name)}
-          label={[...phrase, select.name].join(" ")}
-          value={section.stateValues[toCamelCase(boundary + select.name)]}
-          onChange={(e) =>
-            section.updateValues(e, toCamelCase(boundary + select.name))
-          }
+          key={select.title}
+          entry={entry}
+          boundary={boundary}
+          id={toKebabCase(...phrase, select.title)}
+          label={[...phrase, select.title].join(" ")}
+          onChange={(e) => entry.updateValues(e)}
         />
       ))}
     </fieldset>

@@ -1,34 +1,51 @@
 import Input from "./Input";
 import TimeRange from "./TimeRange";
 import ActionButton from "./ActionButton";
-import { toCamelCase, toKebabCase } from "../helpers/utils";
+import { toKebabCase } from "../helpers/utils";
 import { actionButtons } from "../helpers/data";
 import "../styles/form.css";
 
-const Form = ({ title, inputs, section, timeRange, onSubmit, onReset }) => (
-  <section>
-    <h2>{title}</h2>
-    <form onSubmit={onSubmit} onReset={onReset}>
-      {inputs.map((input) => (
-        <Input
-          {...input}
-          key={input.label}
-          id={toKebabCase(...title.split(" "), ...input.label.split(" "))}
-          value={section.stateValues[toCamelCase(input.label)]}
-          onChange={(e) => section.updateValues(e, toCamelCase(input.label))}
-        />
-      ))}
-      {timeRange &&
-        ["Start", "End"].map((boundary) => (
-          <TimeRange key={boundary} section={section} boundary={boundary} />
+const Form = ({ title, inputs, entry, savedEntries, timeRange }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (savedEntries) {
+      savedEntries.addSection(entry.stateValues);
+      e.target.reset();
+    }
+  };
+
+  const handleReset = () => entry.resetValues();
+
+  return (
+    <section>
+      <h2>{title}</h2>
+      <form onSubmit={handleSubmit} onReset={handleReset}>
+        {inputs.map((input) => (
+          <Input
+            {...input}
+            key={input.label}
+            id={toKebabCase(...title.split(" "), ...input.label.split(" "))}
+            entry={entry}
+            onChange={(e) => entry.updateValues(e)}
+          />
         ))}
-      <div className="btn-group">
-        {actionButtons.map((button) => (
-          <ActionButton {...button} key={button.text} />
-        ))}
-      </div>
-    </form>
-  </section>
-);
+        {timeRange &&
+          ["Start", "End"].map((boundary) => (
+            <TimeRange
+              key={boundary}
+              title={title}
+              entry={entry}
+              boundary={boundary}
+            />
+          ))}
+        <div className="btn-group">
+          {actionButtons.map((button) => (
+            <ActionButton {...button} key={button.text} />
+          ))}
+        </div>
+      </form>
+    </section>
+  );
+};
 
 export default Form;

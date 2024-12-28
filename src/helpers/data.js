@@ -2,13 +2,13 @@ const currentYear = new Date().getFullYear();
 
 export const selects = [
   {
-    name: "Month",
+    title: "Month",
     options: [...Array(12).keys()].map((key) =>
       new Date(0, key).toLocaleString("en", { month: "long" })
     ),
   },
   {
-    name: "Year",
+    title: "Year",
     options: [...Array(101).keys()].map((index) => currentYear - index),
   },
 ];
