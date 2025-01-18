@@ -17,36 +17,33 @@ const Form = ({ title, inputs, entry, savedEntries, timeRange }) => {
   const handleReset = () => entry.resetValues();
 
   return (
-    <section>
-      <h2>{title}</h2>
-      <form onSubmit={handleSubmit} onReset={handleReset}>
-        {inputs.map((input) => (
-          <Input
-            {...input}
-            key={input.label}
-            id={toKebabCase(...title.split(" "), ...input.label.split(" "))}
+    <form onSubmit={handleSubmit} onReset={handleReset}>
+      {inputs.map((input) => (
+        <Input
+          {...input}
+          key={input.label}
+          id={toKebabCase(...title.split(" "), ...input.label.split(" "))}
+          entry={entry}
+          onChange={(e) => entry.updateValues(e)}
+        />
+      ))}
+      {timeRange &&
+        ["Start", "End"].map((boundary) => (
+          <TimeRange
+            key={boundary}
+            title={title}
             entry={entry}
-            onChange={(e) => entry.updateValues(e)}
+            boundary={boundary}
           />
         ))}
-        {timeRange &&
-          ["Start", "End"].map((boundary) => (
-            <TimeRange
-              key={boundary}
-              title={title}
-              entry={entry}
-              boundary={boundary}
-            />
+      {savedEntries && (
+        <div className="btn-group">
+          {actionButtons.map((button) => (
+            <ActionButton {...button} key={button.text} />
           ))}
-        {savedEntries && (
-          <div className="btn-group">
-            {actionButtons.map((button) => (
-              <ActionButton {...button} key={button.text} />
-            ))}
-          </div>
-        )}
-      </form>
-    </section>
+        </div>
+      )}
+    </form>
   );
 };
 

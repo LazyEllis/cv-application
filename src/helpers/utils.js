@@ -39,4 +39,10 @@ export class MultiSection extends Section {
       { id: crypto.randomUUID(), ...section },
     ]);
   }
+
+  deleteSection(sectionID) {
+    this.setState(
+      this.stateValues.filter((section) => section.id !== sectionID)
+    );
+  }
 }

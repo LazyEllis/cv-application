@@ -1,7 +1,24 @@
-form {
+form,
+.form-entries {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.form-entries {
+  margin-bottom: 1rem;
+}
+
+.form-entries > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  font-weight: 700;
+}
+
+.action-icons {
+  display: flex;
+  gap: 10px;
 }
 
 fieldset {

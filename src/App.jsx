@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Form from "./components/Form";
+import FormSection from "./components/FormSection";
 import CVSection from "./components/CVSection";
 import {
   SingleSection,
@@ -91,7 +91,7 @@ const App = () => {
       <main>
         <div className="forms">
           {forms.map((form) => (
-            <Form {...form} key={form.title} />
+            <FormSection {...form} key={form.title} />
           ))}
         </div>
         <div className="cv">
