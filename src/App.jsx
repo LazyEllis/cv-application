@@ -41,10 +41,20 @@ const App = () => {
 
   const [experienceList, setExperienceList] = useState([]);
 
+  const [selectedEducationID, setSelectedEducationID] = useState(null);
+
+  const [selectedExperienceID, setSelectedExperienceID] = useState(null);
+
+  const setToggler = (title) =>
+    title === "Education" ? setSelectedEducationID : setSelectedExperienceID;
+
+  const setSelectedID = (title) =>
+    title === "Education" ? selectedEducationID : selectedExperienceID;
+
   const forms = [
     {
       title: "Personal Details",
-      entry: new SingleSection(personalDetails, setPersonalDetails),
+      currentEntry: new SingleSection(personalDetails, setPersonalDetails),
       inputs: [
         { label: "Full Name", type: "text" },
         { label: "Phone Number", type: "tel" },
@@ -55,7 +65,7 @@ const App = () => {
     },
     {
       title: "Education",
-      entry: new SingleSection(education, setEducation),
+      currentEntry: new SingleSection(education, setEducation),
       savedEntries: new MultiSection(educationList, setEducationList),
       inputs: [
         { label: "School", type: "text" },
@@ -66,7 +76,7 @@ const App = () => {
     },
     {
       title: "Experience",
-      entry: new SingleSection(experience, setExperience),
+      currentEntry: new SingleSection(experience, setExperience),
       savedEntries: new MultiSection(experienceList, setExperienceList),
       inputs: [
         { label: "Position", type: "text" },
@@ -91,7 +101,12 @@ const App = () => {
       <main>
         <div className="forms">
           {forms.map((form) => (
-            <FormSection {...form} key={form.title} />
+            <FormSection
+              {...form}
+              key={form.title}
+              selectedID={setSelectedID(form.title)}
+              toggler={setToggler(form.title)}
+            />
           ))}
         </div>
         <div className="cv">
@@ -117,7 +132,8 @@ const App = () => {
               key={innerSection.title}
               title={innerSection.title}
               savedEntries={innerSection.savedEntries.stateValues}
-              entry={innerSection.entry.stateValues}
+              currentEntry={innerSection.currentEntry.stateValues}
+              selectedID={setSelectedID(innerSection.title)}
             />
           ))}
         </div>

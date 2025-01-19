@@ -2,7 +2,7 @@ import Form from "./Form";
 import FormEntry from "./FormEntry";
 import "../styles/form.css";
 
-const FormSection = ({ title, savedEntries, ...rest }) => (
+const FormSection = ({ title, savedEntries, selectedID, toggler, ...rest }) => (
   <section>
     <h2>{title}</h2>
     {savedEntries && savedEntries.stateValues.length > 0 && (
@@ -12,12 +12,17 @@ const FormSection = ({ title, savedEntries, ...rest }) => (
             key={entry.id}
             title={title}
             savedEntries={savedEntries}
-            selectedEntry={entry}
+            entry={entry}
+            selectedID={selectedID}
+            toggler={toggler}
+            {...rest}
           />
         ))}
       </div>
     )}
-    <Form title={title} savedEntries={savedEntries} {...rest} />
+    {(!savedEntries || !selectedID) && (
+      <Form title={title} savedEntries={savedEntries} {...rest} />
+    )}
   </section>
 );
 

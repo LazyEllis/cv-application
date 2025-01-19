@@ -25,6 +25,12 @@ export class SingleSection extends Section {
     });
   }
 
+  setValues(entry) {
+    this.setState(
+      Object.fromEntries(Object.entries(entry).filter(([key]) => key !== "id"))
+    );
+  }
+
   resetValues() {
     this.setState(
       Object.fromEntries(Object.keys(this.stateValues).map((key) => [key, ""]))
@@ -38,6 +44,14 @@ export class MultiSection extends Section {
       ...this.stateValues,
       { id: crypto.randomUUID(), ...section },
     ]);
+  }
+
+  updateSection(newSection, sectionID) {
+    this.setState(
+      this.stateValues.map((section) =>
+        section.id === sectionID ? { id: sectionID, ...newSection } : section
+      )
+    );
   }
 
   deleteSection(sectionID) {

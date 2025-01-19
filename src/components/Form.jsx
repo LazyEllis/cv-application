@@ -5,16 +5,29 @@ import { toKebabCase } from "../helpers/utils";
 import { actionButtons } from "../helpers/data";
 import "../styles/form.css";
 
-const Form = ({ title, inputs, entry, savedEntries, timeRange }) => {
+const Form = ({
+  title,
+  inputs,
+  currentEntry,
+  savedEntries,
+  timeRange,
+  selectedID,
+  onSectionSave,
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (savedEntries) {
-      savedEntries.addSection(entry.stateValues);
+      selectedID
+        ? savedEntries.updateSection(currentEntry.stateValues, selectedID)
+        : savedEntries.addSection(currentEntry.stateValues);
       e.target.reset();
     }
   };
 
-  const handleReset = () => entry.resetValues();
+  const handleReset = () => {
+    currentEntry.resetValues();
+    if (selectedID) onSectionSave();
+  };
 
   return (
     <form onSubmit={handleSubmit} onReset={handleReset}>
@@ -23,8 +36,8 @@ const Form = ({ title, inputs, entry, savedEntries, timeRange }) => {
           {...input}
           key={input.label}
           id={toKebabCase(...title.split(" "), ...input.label.split(" "))}
-          entry={entry}
-          onChange={(e) => entry.updateValues(e)}
+          entry={currentEntry}
+          onChange={(e) => currentEntry.updateValues(e)}
         />
       ))}
       {timeRange &&
@@ -32,7 +45,7 @@ const Form = ({ title, inputs, entry, savedEntries, timeRange }) => {
           <TimeRange
             key={boundary}
             title={title}
-            entry={entry}
+            entry={currentEntry}
             boundary={boundary}
           />
         ))}
