@@ -10,11 +10,11 @@ import "./styles/app.css";
 
 const App = () => {
   const [personalDetails, setPersonalDetails] = useState({
-    fullName: "",
-    phoneNumber: "",
-    emailAddress: "",
-    linkedIn: "",
-    gitHub: "",
+    fullName: "Jake Ryan",
+    phoneNumber: "123-456-7890",
+    emailAddress: "jake@su.edu",
+    linkedIn: "linkedin.com/in/jake",
+    gitHub: "github.com/jake",
   });
 
   const [education, setEducation] = useState({
@@ -37,10 +37,61 @@ const App = () => {
     endYear: "",
   });
 
-  const [educationList, setEducationList] = useState([]);
+  const [educationList, setEducationList] = useState([
+    {
+      id: "1",
+      school: "Southwestern University",
+      degree: "BA in Comp Sci, Minor in Business",
+      location: "Georgetown, TX",
+      startMonth: "August",
+      startYear: "2018",
+      endMonth: "May",
+      endYear: "2021",
+    },
+    {
+      id: "2",
+      school: "Blinn College",
+      degree: "Associate's in Liberal Arts",
+      location: "Bryan, TX",
+      startMonth: "August",
+      startYear: "2014",
+      endMonth: "May",
+      endYear: "2018",
+    },
+  ]);
 
-  const [experienceList, setExperienceList] = useState([]);
-
+  const [experienceList, setExperienceList] = useState([
+    {
+      id: "1",
+      position: "Undergraduate Research Assistant",
+      company: "Texas A&M University",
+      location: "College Station, TX",
+      startMonth: "June",
+      startYear: "2020",
+      endMonth: "January",
+      endYear: "2025",
+    },
+    {
+      id: "2",
+      position: "IT Support Specialist",
+      company: "Southwestern University",
+      location: "Georgetown, TX",
+      startMonth: "September",
+      startYear: "2018",
+      endMonth: "January",
+      endYear: "2025",
+    },
+    {
+      id: "3",
+      position: "AI Research Assistant",
+      company: "Southwestern University",
+      location: "Georgetown, TX",
+      startMonth: "May",
+      startYear: "2019",
+      endMonth: "July",
+      endYear: "2019",
+    },
+  ]);
   const [selectedEducationID, setSelectedEducationID] = useState(null);
 
   const [selectedExperienceID, setSelectedExperienceID] = useState(null);
