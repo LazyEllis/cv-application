@@ -1,8 +1,8 @@
 @font-face {
   font-family: "URW DIN Cond W05 Medium Regular";
-  src: url("../assets/fontsfree-net-4792716d-7428-453b-b5fb-ebdea9ad3a29-webfont.woff2")
+  src: url("../assets/fonts/fontsfree-net-4792716d-7428-453b-b5fb-ebdea9ad3a29-webfont.woff2")
       format("woff2"),
-    url("../assets/fontsfree-net-4792716d-7428-453b-b5fb-ebdea9ad3a29-webfont.woff")
+    url("../assets/fonts/fontsfree-net-4792716d-7428-453b-b5fb-ebdea9ad3a29-webfont.woff")
       format("woff");
   font-weight: normal;
   font-style: normal;
@@ -10,9 +10,9 @@
 
 @font-face {
   font-family: "URW DIN W05 Medium Regular";
-  src: url("../assets/fontsfree-net-5a988402-0fa0-49d9-94db-59685a4c6404-webfont.woff2")
+  src: url("../assets/fonts/fontsfree-net-5a988402-0fa0-49d9-94db-59685a4c6404-webfont.woff2")
       format("woff2"),
-    url("../assets/fontsfree-net-5a988402-0fa0-49d9-94db-59685a4c6404-webfont.woff")
+    url("../assets/fonts/fontsfree-net-5a988402-0fa0-49d9-94db-59685a4c6404-webfont.woff")
       format("woff");
   font-weight: normal;
   font-style: normal;
