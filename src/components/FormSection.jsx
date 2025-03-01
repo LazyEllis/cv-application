@@ -1,12 +1,13 @@
 import Form from "./Form";
 import FormEntry from "./FormEntry";
-import "../styles/form.css";
+import styles from "../styles/FormSection.module.css";
+import formStyles from "../styles/Form.module.css";
 
 const FormSection = ({ title, savedEntries, selectedID, toggler, ...rest }) => (
-  <section>
-    <h2>{title}</h2>
+  <section className={styles.section}>
+    <h2 className={styles.title}>{title}</h2>
     {savedEntries && savedEntries.stateValues.length > 0 && (
-      <div className="form-entries">
+      <div className={formStyles.formEntries}>
         {savedEntries.stateValues.map((entry) => (
           <FormEntry
             key={entry.id}

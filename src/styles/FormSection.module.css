@@ -1,0 +1,28 @@
+.section {
+  background-color: #152238;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: #f9e54e;
+  border-radius: 4px 0 0 4px;
+}
+
+.title {
+  color: #f9e54e;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}

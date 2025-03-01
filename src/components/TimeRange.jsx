@@ -1,13 +1,14 @@
 import Select from "./Select";
 import { selects } from "../helpers/data";
 import { toKebabCase } from "../helpers/utils";
+import styles from "../styles/Form.module.css";
 
 const TimeRange = ({ title, entry, boundary }) => {
   const phrase = [title, boundary];
 
   return (
-    <fieldset>
-      <legend>{phrase.join(" ")} Date</legend>
+    <fieldset className={styles.fieldset}>
+      <legend className={styles.legend}>{phrase.join(" ")} Date</legend>
       {selects.map((select) => (
         <Select
           {...select}

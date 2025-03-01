@@ -1,6 +1,7 @@
 import Form from "./Form";
 import DeleteIcon from "../assets/icons/delete.svg";
 import EditIcon from "../assets/icons/edit.svg";
+import styles from "../styles/Form.module.css";
 
 const FormEntry = ({
   title,
@@ -20,13 +21,13 @@ const FormEntry = ({
   const handleSectionSaveToggle = () => toggler(null);
 
   return entry.id !== selectedID ? (
-    <div>
+    <div className={styles.formEntry}>
       {title === "Education" ? entry.school : entry.position}
-      <div className="action-icons">
-        <button onClick={handleSectionDelete}>
+      <div className={styles.actionIcons}>
+        <button className={styles.iconBtn} onClick={handleSectionDelete}>
           <img src={DeleteIcon} alt="Delete Entry" />
         </button>
-        <button onClick={handleSectionEditToggle}>
+        <button className={styles.iconBtn} onClick={handleSectionEditToggle}>
           <img src={EditIcon} alt="Edit Entry" />
         </button>
       </div>

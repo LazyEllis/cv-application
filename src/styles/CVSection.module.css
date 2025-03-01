@@ -1,0 +1,57 @@
+.section h3 {
+  text-transform: uppercase;
+  border-bottom: 2px solid #0e1624;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section h3::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 40%;
+  height: 2px;
+  background-color: #f9e54e;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.entry {
+  border-left: 4px solid #f9e54e;
+  padding-left: 12px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.row h4 {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.dateRange {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.secondary {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.location {
+  font-style: italic;
+  color: #555;
+  font-size: 0.9rem;
+}

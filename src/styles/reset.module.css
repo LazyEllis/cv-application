@@ -20,22 +20,24 @@
 
 * {
   box-sizing: border-box;
-}
-
-body,
-h1,
-h2,
-h3,
-h4 {
   margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: "URW DIN W05 Medium Regular";
+  margin: 0;
+  font-family: "URW DIN W05 Medium Regular", Arial, sans-serif;
+  background-color: #0e1624;
+  color: #ffffff;
 }
 
-h1,
-h2,
-h3 {
-  font-family: "URW DIN Cond W05 Medium Regular";
+button {
+  cursor: pointer;
+  font-family: "URW DIN Cond W05 Medium Regular", Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+input,
+select {
+  font-family: inherit;
 }

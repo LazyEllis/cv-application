@@ -6,7 +6,7 @@ import {
   MultiSection,
   hasNonEmptyValues,
 } from "./helpers/utils";
-import "./styles/app.css";
+import styles from "./styles/App.module.css";
 
 const App = () => {
   const [personalDetails, setPersonalDetails] = useState({
@@ -145,12 +145,12 @@ const App = () => {
   const innerSections = forms.filter((form) => form.savedEntries);
 
   return (
-    <>
-      <header>
-        <h1>CV Generator</h1>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>CV Generator</h1>
       </header>
-      <main>
-        <div className="forms">
+      <main className={styles.main}>
+        <div className={`${styles.column} ${styles.forms}`}>
           {forms.map((form) => (
             <FormSection
               {...form}
@@ -160,16 +160,18 @@ const App = () => {
             />
           ))}
         </div>
-        <div className="cv">
+        <div className={`${styles.column} ${styles.cv}`}>
           {hasNonEmptyValues(personalDetails) && (
-            <header>
+            <header className={styles.cvHeader}>
               {personalDetails.fullName && <h2>{personalDetails.fullName}</h2>}
               {hasNonEmptyValues(Object.fromEntries(contactInfo)) && (
-                <div className="contact-info">
+                <div className={styles.contactInfo}>
                   {contactInfo.map(([key, value], index) => (
                     <div
                       key={key}
-                      className={index > 0 ? "border-left" : undefined}
+                      className={`${styles.contactItem} ${
+                        index > 0 ? styles.borderLeft : ""
+                      }`}
                     >
                       {value}
                     </div>
@@ -189,7 +191,7 @@ const App = () => {
           ))}
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import { toCamelCase } from "../helpers/utils";
+import styles from "../styles/Form.module.css";
 
 const Select = ({ id, label, entry, boundary, title, options, onChange }) => {
   const name = toCamelCase(boundary + title);
@@ -6,6 +7,7 @@ const Select = ({ id, label, entry, boundary, title, options, onChange }) => {
 
   return (
     <select
+      className={styles.select}
       name={name}
       id={id}
       aria-label={label}

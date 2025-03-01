@@ -3,7 +3,7 @@ import TimeRange from "./TimeRange";
 import ActionButton from "./ActionButton";
 import { toKebabCase } from "../helpers/utils";
 import { actionButtons } from "../helpers/data";
-import "../styles/form.css";
+import styles from "../styles/Form.module.css";
 
 const Form = ({
   title,
@@ -30,7 +30,7 @@ const Form = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} onReset={handleReset}>
+    <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
       {inputs.map((input) => (
         <Input
           {...input}
@@ -50,7 +50,7 @@ const Form = ({
           />
         ))}
       {savedEntries && (
-        <div className="btn-group">
+        <div className={styles.btnGroup}>
           {actionButtons.map((button) => (
             <ActionButton {...button} key={button.text} />
           ))}
